@@ -1,0 +1,246 @@
+/* src/components/ThemeCarousel/ThemeCarousel.css */
+
+/* --- General Container --- */
+.theme-carousel-container.theme-card-carousel-container {
+    padding: 50px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin-top: 40px;
+    margin-bottom: 60px;
+    transition: border-color 0.3s ease;
+    position: relative;
+}
+
+.theme-carousel-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+/* --- Carousel Structure (Mobile First - Single Card Focus) --- */
+.carousel-viewport {
+    max-width: 450px; /* Mobile viewport size */
+    margin: 0 auto;
+    position: relative;
+    perspective: 1500px; /* Keep perspective */
+}
+
+/* Track: Sets height and positioning context */
+.carousel-track {
+    position: relative; /* Positioning context for slides */
+    width: 100%;
+    height: 300px; /* Mobile height */
+    margin: 0 auto;
+    margin-left:13.225%;
+    transform-style: preserve-3d;
+    transform: none !important; /* Ensure track is not transformed */
+}
+
+/* --- Card Slide Styling (Mobile First) --- */
+.carousel-card-slide {
+    display: none; /* Hide non-active on mobile */
+    position: absolute;
+    top: 0;
+    left: 0; /* Position at start of track */
+    width: 100%; /* Take full width of track on mobile */
+    height: 100%;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.5s ease; /* No z-index transition needed now */
+                /* Removed step-end from z-index transition */
+    box-sizing: border-box;
+    pointer-events: none;
+    backface-visibility: hidden;
+    transform-origin: center center;
+     /* Inline styles handle transform, opacity, z-index, width */
+}
+
+/* Show only active slide on mobile */
+.carousel-card-slide.active {
+    display: block;
+    pointer-events: auto;
+    /* Ensure mobile active card is correctly positioned */
+    /* JS will set transform: translateX(25%) scale(1) based on 50% width */
+    /* Let inline style from JS handle it */
+}
+/* Mobile Focus */
+.carousel-card-slide.active:focus {
+     outline: 2px solid var(--primary-color);
+     outline-offset: 3px;
+}
+
+
+/* --- Card Styling (Common) --- */
+.carousel-card {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--card-bg);
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: box-shadow 0.4s ease;
+}
+.carousel-card-slide.active .carousel-card {
+    box-shadow: 0 8px 25px var(--shadow-color), 0 0 0 3px var(--primary-color);
+}
+
+.carousel-card-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.carousel-card-name {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- Navigation Buttons (Common) --- */
+.carousel-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+    padding: 0;
+    opacity: 0.7;
+}
+.carousel-nav-button:hover:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: translateY(-50%) scale(1.1);
+    opacity: 1;
+}
+.carousel-nav-button:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+.carousel-nav-button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+.carousel-nav-button.prev {
+    left: 10px;
+}
+.carousel-nav-button.next {
+    right: 10px;
+}
+
+/* --- Dots Indicator --- */
+.carousel-dots {
+    text-align: center;
+    margin-top: 25px;
+}
+.carousel-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    border: none;
+    padding: 0;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.carousel-dot:hover:not(:disabled) {
+    background-color: var(--text-color);
+    transform: scale(1.2);
+}
+.carousel-dot.active {
+    background-color: var(--primary-color);
+    transform: scale(1.3);
+}
+.carousel-dot:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* --- DESKTOP STYLES --- */
+@media screen and (min-width: 769px) {
+    .carousel-viewport {
+        max-width: 1000px; /* Allow viewport to be wider */
+         /* Add horizontal padding so side cards don't touch edge */
+         padding: 0 50px;
+         box-sizing: border-box;
+    }
+
+    .carousel-track {
+        height: 350px;
+        margin-left:12.5%;
+    }
+
+    /* Desktop: ALL slides are displayed and positioned via inline style */
+    .carousel-card-slide {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0; /* REMOVED left: 50% */
+        /* width is now set by inline style */
+        height: 100%;
+        pointer-events: auto;
+        /* transition defined above */
+    }
+
+     /* Desktop focus styles */
+     .carousel-card-slide:focus-visible {
+         outline: 2px solid var(--secondary-color);
+         outline-offset: 4px;
+     }
+     .carousel-card-slide.active:focus-visible {
+          outline-color: var(--primary-color);
+     }
+
+    .carousel-card-name {
+        font-size: 1.4rem;
+    }
+
+    /* Adjust Nav Buttons for Desktop */
+    .carousel-nav-button {
+        width: 50px;
+        height: 50px;
+    }
+    /* Position buttons relative to viewport padding */
+    .carousel-nav-button.prev {
+        left: 10px; /* Inside padding */
+    }
+    .carousel-nav-button.next {
+        right: 10px; /* Inside padding */
+    }
+}
+
+/* Hide the old button styles */
+.theme-option-button {
+    display: none;
+}

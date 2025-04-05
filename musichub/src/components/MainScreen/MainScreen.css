@@ -1,0 +1,182 @@
+/* src/components/MainScreen/MainScreen.css */
+
+/* Banner Section Styles */
+.banner-section {
+    height: 70vh; /* Slightly taller banner */
+    min-height: 450px;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Stack title and subtitle */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Optional: Parallax effect */
+    color: #fff;
+    /* Pull up to be under the transparent navbar (height defined in :root) */
+    margin-top: calc(-1 * var(--navbar-height));
+    margin-bottom: 60px; /* Increased space before next section */
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradient overlay for better text contrast */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4));
+    z-index: 1;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+.banner-title {
+    font-size: 4rem; /* Larger title */
+    font-weight: 700;
+    line-height: 1.1;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+    margin: 0 0 15px 0; /* Space below title */
+    letter-spacing: 1px;
+}
+
+.banner-subtitle {
+    font-size: 1.4rem;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    opacity: 0.9;
+}
+
+/* Description Section Styles */
+.description-section {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.description-text {
+    font-size: 1.15rem; /* Slightly larger */
+    line-height: 1.8; /* More spacing */
+    color: var(--text-color);
+    opacity: 0.85; /* Adjust opacity */
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+/* General Section Styling */
+.content-section {
+  padding: 50px; /* Increased vertical padding */
+  max-width: 1300px;
+  margin: 0 auto -60px auto; /* Center content and add bottom margin */
+}
+.content-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Theme Carousel Section specific adjustments */
+.theme-carousel-section {
+    padding-top: 20px; /* Reduced top padding */
+    padding-bottom: 20px; /* Reduced bottom padding */
+    max-width: none; /* Allow full width */
+    margin-bottom: 60px;
+}
+
+/* Wrapper for the card sections */
+.main-content-cards {
+  padding: 0; /* Sections inside handle padding */
+}
+
+.section-title {
+  font-size: 2.2rem; /* Larger section titles */
+  font-weight: 700;
+  margin-bottom: 40px; /* More space below title */
+  color: var(--text-color);
+  border-left: 5px solid var(--primary-color);
+  padding-left: 15px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px; /* Slightly more gap */
+}
+
+/* --- Responsive Adjustments --- */
+@media screen and (max-width: 960px) {
+    .content-section {
+        padding: 40px 20px;
+        margin-bottom: 50px;
+    }
+    .banner-title {
+        font-size: 3.2rem;
+    }
+    .banner-subtitle {
+        font-size: 1.2rem;
+    }
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    .card-grid {
+         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+         gap: 25px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .banner-section {
+        height: 60vh;
+        min-height: 400px;
+        margin-bottom: 40px;
+    }
+    .banner-title {
+        font-size: 2.5rem;
+    }
+     .banner-subtitle {
+        font-size: 1.1rem;
+    }
+    .description-text {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+    .content-section {
+        padding: 30px 15px;
+        margin-bottom: -50px;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        /* Adjust padding if navbar height changes, e.g. var(--navbar-height-mobile, 60px) */
+         /* padding-top: var(--navbar-height-mobile, 60px); */
+    }
+    .banner-section {
+        /* margin-top: calc(-1 * var(--navbar-height-mobile, 60px)); */
+        height: 55vh;
+        min-height: 350px;
+    }
+     .banner-title {
+        font-size: 2.1rem;
+    }
+    .banner-subtitle {
+        font-size: 1rem;
+    }
+    .card-grid {
+        /* Switch to single column */
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}

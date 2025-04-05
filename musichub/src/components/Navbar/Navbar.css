@@ -1,0 +1,301 @@
+/* src/components/Navbar/Navbar.css */
+.navbar {
+    height: var(--navbar-height); /* Use variable */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    position: fixed; /* Changed to fixed */
+    top: 0;
+    left: 0; /* Ensure it starts at the left edge */
+    width: 100%; /* Ensure it spans full width */
+    z-index: 999;
+    background: transparent; /* Start transparent */
+    box-shadow: none; /* No shadow initially */
+    transition: background-color 0.4s ease, box-shadow 0.4s ease; /* Smooth transition */
+  }
+  
+  /* Scrolled state */
+  .navbar.navbar--scrolled {
+    background: var(--navbar-bg); /* Use theme background color */
+    box-shadow: 0 2px 10px var(--shadow-color); /* Add shadow back */
+  }
+  
+  /* When the mobile menu is open, force the navbar background to be solid */
+  .navbar.mobile-open {
+      background: var(--navbar-bg);
+      box-shadow: 0 2px 10px var(--shadow-color);
+  }
+  
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between; /* Space between logo and links/icons */
+    align-items: center;
+    height: var(--navbar-height); /* Use variable */
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    padding: 0 25px; /* Add padding */
+  }
+  
+  .navbar-logo {
+    color: var(--primary-color);
+    justify-self: start;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease;
+  }
+  .navbar-logo:hover {
+      color: var(--secondary-color);
+  }
+  
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+  }
+  
+  .nav-item {
+    height: var(--navbar-height); /* Use variable */
+    display: flex; /* Ensure items align nicely */
+    align-items: center;
+  }
+  /* Hide theme toggle in mobile menu by default */
+  .nav-item-theme-toggle {
+      display: none;
+  }
+  
+  .nav-links {
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+    cursor: pointer;
+    position: relative; /* For pseudo-element */
+    transition: color 0.2s ease;
+  }
+  
+  .nav-links::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: 20px; /* Adjust position */
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+  }
+  
+  .nav-links:hover::after {
+      width: 60%; /* Adjust hover width */
+  }
+  
+  .nav-links:hover {
+    color: var(--primary-color);
+  }
+  
+  .menu-icon {
+    display: none; /* Hidden by default */
+    cursor: pointer;
+    color: var(--text-color); /* Use text color for icon */
+  }
+  
+  /* Theme Toggle Buttons */
+  .theme-toggle-button,
+  .theme-toggle-button-desktop {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .theme-toggle-button:hover,
+  .theme-toggle-button-desktop:hover {
+      background-color: rgba(128, 128, 128, 0.2); /* Subtle hover background */
+  }
+  
+  .theme-toggle-button-desktop {
+      margin-left: 1rem; /* Space from nav links */
+  }
+  
+  .theme-toggle-button .sr-only,
+  .theme-toggle-button-desktop .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+  }
+  
+  
+  /* Text color adjustments for transparent navbar */
+  .navbar:not(.navbar--scrolled) .nav-links,
+  .navbar:not(.navbar--scrolled) .navbar-logo,
+  .navbar:not(.navbar--scrolled) .menu-icon,
+  .navbar:not(.navbar--scrolled) .theme-toggle-button,
+  .navbar:not(.navbar--scrolled) .theme-toggle-button-desktop {
+      color: #fff; /* Default to white text when transparent */
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); /* Readability */
+  }
+  .navbar:not(.navbar--scrolled) .nav-links:hover,
+  .navbar:not(.navbar--scrolled) .navbar-logo:hover {
+       color: #eee; /* Lighter hover color */
+  }
+  /* Adjust hover underline color when transparent */
+  .navbar:not(.navbar--scrolled) .nav-links::after {
+      background-color: rgba(255, 255, 255, 0.8); /* Lighter underline */
+  }
+  /* Exception for dark mode when transparent */
+  [data-theme='dark'] .navbar:not(.navbar--scrolled) .nav-links,
+  [data-theme='dark'] .navbar:not(.navbar--scrolled) .navbar-logo,
+  [data-theme='dark'] .navbar:not(.navbar--scrolled) .menu-icon,
+  [data-theme='dark'] .navbar:not(.navbar--scrolled) .theme-toggle-button,
+  [data-theme='dark'] .navbar:not(.navbar--scrolled) .theme-toggle-button-desktop {
+      color: #fff; /* Keep white text */
+  }
+  [data-theme='dark'] .navbar:not(.navbar--scrolled) .nav-links:hover,
+  [data-theme='dark'] .navbar:not(.navbar--scrolled) .navbar-logo:hover {
+       color: #ddd;
+  }
+  [data-theme='dark'] .navbar:not(.navbar--scrolled) .nav-links::after {
+      background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  /* Reset text color when mobile menu is open or navbar is scrolled */
+  .navbar.mobile-open .nav-links,
+  .navbar.mobile-open .navbar-logo,
+  .navbar.mobile-open .menu-icon,
+  .navbar.mobile-open .theme-toggle-button,
+  .navbar.mobile-open .theme-toggle-button-desktop,
+  .navbar.navbar--scrolled .nav-links,
+  .navbar.navbar--scrolled .navbar-logo,
+  .navbar.navbar--scrolled .menu-icon,
+  .navbar.navbar--scrolled .theme-toggle-button,
+  .navbar.navbar--scrolled .theme-toggle-button-desktop {
+      color: var(--text-color); /* Use theme text color */
+      text-shadow: none;
+  }
+  /* Ensure scrolled hover uses primary color */
+  .navbar.navbar--scrolled .nav-links:hover,
+  .navbar.navbar--scrolled .navbar-logo:hover {
+       color: var(--primary-color);
+  }
+  .navbar.navbar--scrolled .nav-links::after {
+      background-color: var(--primary-color);
+  }
+  
+  
+  /* --- Mobile Responsiveness --- */
+  @media screen and (max-width: 960px) {
+    .navbar-container {
+      padding: 0 20px; /* Adjust padding */
+    }
+  
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      /* Full height minus navbar height (use calc with variable) */
+      height: calc(100vh - var(--navbar-height));
+      position: absolute;
+      top: var(--navbar-height); /* Position below navbar */
+      left: -110%; /* Start off-screen */
+      opacity: 0; /* Start hidden */
+      transition: all 0.5s ease;
+      background: var(--navbar-bg); /* Use theme background */
+      padding-top: 2rem;
+    }
+  
+    .nav-menu.active {
+      left: 0;
+      opacity: 1;
+      transition: all 0.5s ease;
+      z-index: 1;
+    }
+  
+    .nav-item {
+      width: 100%;
+      height: auto; /* Adjust height */
+    }
+  
+    .nav-links {
+      text-align: center;
+      padding: 1.5rem; /* Increase padding for touch */
+      width: 100%;
+      display: table; /* Helps center text */
+      font-size: 1.3rem; /* Larger font for mobile */
+      /* Ensure mobile links always use theme text color when menu is open */
+      color: var(--text-color);
+      text-shadow: none;
+    }
+    .nav-links::after {
+       display: none; /* Hide underline effect on mobile */
+    }
+  
+    .nav-links:hover {
+      color: var(--primary-color);
+      background-color: rgba(128, 128, 128, 0.1); /* Subtle hover */
+      border-radius: 0;
+    }
+  
+    .menu-icon {
+      display: block; /* Show hamburger */
+      position: absolute;
+      top: 0;
+      right: 0;
+      /* Center vertically within navbar height */
+      transform: translate(-100%, calc( (var(--navbar-height) - 28px) / 2) ); /* Adjust 28px if icon size changes */
+      font-size: 1.8rem;
+    }
+  
+    /* Show theme toggle inside the mobile menu */
+    .nav-item-theme-toggle {
+        display: flex; /* Use flex to center */
+        justify-content: center;
+        padding: 1rem 0;
+        height: auto; /* Override fixed height */
+    }
+    .theme-toggle-button {
+        padding: 12px; /* Larger touch target */
+        color: var(--text-color); /* Ensure theme color */
+        text-shadow: none;
+    }
+    .theme-toggle-button svg {
+        width: 24px; /* Slightly larger icon */
+        height: 24px;
+    }
+  
+    /* Hide the desktop theme toggle button */
+    .theme-toggle-button-desktop {
+        display: none;
+    }
+  
+     /* Ensure mobile nav menu links always use theme colors even if navbar isn't scrolled */
+     .nav-menu.active .nav-links {
+         color: var(--text-color);
+         text-shadow: none;
+     }
+     .nav-menu.active .nav-links:hover {
+         color: var(--primary-color);
+         background-color: rgba(128, 128, 128, 0.1);
+     }
+  }

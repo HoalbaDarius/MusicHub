@@ -1,0 +1,182 @@
+/* src/index.css */
+
+/* Import Fonts (Example - replace with actual fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap'); /* Default */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap'); /* Japanese Example */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap'); /* Trap/Rock Example */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap'); /* K-Pop Example */
+
+
+/* --- Base Variables (Apply everywhere) --- */
+:root {
+    --navbar-height: 80px; /* Define navbar height as variable */
+    /* Define more base variables if needed */
+}
+
+/* --- Default Style Theme Variables --- */
+:root, /* Light mode default */
+html[data-style-theme='default'] {
+    --font-family: 'Poppins', sans-serif;
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --navbar-bg: #ffffff;
+    --primary-color: #6200ea; /* Purple */
+    --secondary-color: #03dac6; /* Teal */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-color: #e0e0e0;
+}
+html[data-theme='dark'][data-style-theme='default'], /* Dark mode default */
+html[data-theme='dark']:not([data-style-theme]), /* Dark mode if style not set */
+:root[data-theme='dark'] { /* Might be needed for initial load */
+    --font-family: 'Poppins', sans-serif;
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --navbar-bg: #1e1e1e;
+    --primary-color: #bb86fc; /* Lighter Purple */
+    --secondary-color: #03dac6; /* Teal */
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --border-color: #333;
+}
+
+/* --- Japanese Style Theme Variables --- */
+html[data-style-theme='japanese'] {
+    --font-family: 'Noto Sans JP', sans-serif;
+    /* Light Mode */
+    --bg-color: #f8f8f8;
+    --text-color: #444;
+    --card-bg: #ffffff;
+    --navbar-bg: #ffffff;
+    --primary-color: #e60026; /* Red */
+    --secondary-color: #f6a3b1; /* Light Pink */
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --border-color: #eaeaea;
+}
+html[data-theme='dark'][data-style-theme='japanese'] {
+    --font-family: 'Noto Sans JP', sans-serif;
+    /* Dark Mode */
+    --bg-color: #1a1a1a;
+    --text-color: #d1d1d1;
+    --card-bg: #2a2a2a;
+    --navbar-bg: #2a2a2a;
+    --primary-color: #ff4d6d; /* Brighter Red */
+    --secondary-color: #b36a76; /* Darker Pink */
+    --shadow-color: rgba(255, 255, 255, 0.08);
+    --border-color: #404040;
+}
+
+/* --- K-Pop Style Theme Variables --- */
+html[data-style-theme='kpop'] {
+    --font-family: 'Nunito', sans-serif;
+    /* Light Mode */
+    --bg-color: #fff0f5; /* Lavender Blush */
+    --text-color: #553d4f; /* Dark Purple/Brown */
+    --card-bg: #ffffff;
+    --navbar-bg: #ffffff;
+    --primary-color: #ff69b4; /* Hot Pink */
+    --secondary-color: #87cefa; /* Light Sky Blue */
+    --shadow-color: rgba(255, 105, 180, 0.15);
+    --border-color: #fddde6;
+}
+html[data-theme='dark'][data-style-theme='kpop'] {
+    --font-family: 'Nunito', sans-serif;
+    /* Dark Mode */
+    --bg-color: #2c132b; /* Dark Purple */
+    --text-color: #fceded;
+    --card-bg: #442643; /* Darker Purple */
+    --navbar-bg: #442643;
+    --primary-color: #ff85c8; /* Lighter Pink */
+    --secondary-color: #add8e6; /* Lighter Blue */
+    --shadow-color: rgba(255, 133, 200, 0.15);
+    --border-color: #6a3b69;
+}
+
+/* --- Trap Style Theme Variables --- */
+html[data-style-theme='trap'] {
+    --font-family: 'Orbitron', sans-serif; /* Futuristic font example */
+    /* Light Mode */
+    --bg-color: #e8e8e8; /* Light Gray */
+    --text-color: #1a1a1a;
+    --card-bg: #f5f5f5;
+    --navbar-bg: #f5f5f5;
+    --primary-color: #ff00ff; /* Magenta */
+    --secondary-color: #00ffff; /* Cyan */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-color: #dcdcdc;
+}
+html[data-theme='dark'][data-style-theme='trap'] {
+    --font-family: 'Orbitron', sans-serif;
+    /* Dark Mode */
+    --bg-color: #0d0d0d;
+    --text-color: #e0e0e0;
+    --card-bg: #1f1f1f;
+    --navbar-bg: #1f1f1f;
+    --primary-color: #ff00ff; /* Magenta (keep bright) */
+    --secondary-color: #00ffff; /* Cyan (keep bright) */
+    --shadow-color: rgba(255, 0, 255, 0.2); /* Magenta shadow */
+    --border-color: #333;
+}
+
+/* --- Rock Style Theme Variables --- */
+html[data-style-theme='rock'] {
+    --font-family: 'Orbitron', sans-serif; /* Or use a more grungy font */
+    /* Light Mode */
+    --bg-color: #cccccc; /* Gray */
+    --text-color: #111111;
+    --card-bg: #e0e0e0;
+    --navbar-bg: #e0e0e0;
+    --primary-color: #d32f2f; /* Red */
+    --secondary-color: #515151; /* Dark Gray */
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --border-color: #b0b0b0;
+}
+html[data-theme='dark'][data-style-theme='rock'] {
+    --font-family: 'Orbitron', sans-serif;
+    /* Dark Mode */
+    --bg-color: #1c1c1c;
+    --text-color: #bdbdbd;
+    --card-bg: #2d2d2d;
+    --navbar-bg: #2d2d2d;
+    --primary-color: #f44336; /* Brighter Red */
+    --secondary-color: #9e9e9e; /* Lighter Gray */
+    --shadow-color: rgba(0, 0, 0, 0.3); /* Stronger Shadow */
+    --border-color: #424242;
+}
+
+
+/* --- Global Styles using Variables --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family); /* Use font variable */
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Font transition is tricky */
+  padding-top: var(--navbar-height); /* Use navbar height variable for spacing below fixed navbar */
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.smooth-transition {
+    transition: all 0.3s ease; /* General transition */
+}

@@ -1,0 +1,273 @@
+/* ArtistModal.css */
+.artist-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.artist-modal-content {
+  background-color: var(--card-bg);
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+  overflow: auto;
+  position: relative;
+  animation: slideUp 0.3s ease;
+  color: var(--text-color);
+}
+
+.artist-modal-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.artist-modal-close:hover {
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
+.artist-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 30px;
+  padding: 30px;
+}
+
+.artist-modal-image-container {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 400px;
+}
+
+.artist-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.artist-modal-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.artist-modal-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  padding-right: 40px;
+}
+
+.artist-modal-genre {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin: 0 0 20px 0;
+}
+
+.artist-modal-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.artist-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stat-item {
+  text-align: center;
+  background-color: rgba(128, 128, 128, 0.1);
+  padding: 15px 10px;
+  border-radius: 8px;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.popular-songs-section {
+  margin-top: 10px;
+}
+
+.popular-songs-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  border-left: 4px solid var(--primary-color);
+  padding-left: 10px;
+}
+
+.popular-songs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.song-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.song-number {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  width: 30px;
+}
+
+.song-cover {
+  width: 45px;
+  height: 45px;
+  border-radius: 4px;
+  margin: 0 15px;
+  object-fit: cover;
+}
+
+.song-info {
+  flex: 1;
+}
+
+.song-title {
+  font-weight: 600;
+  margin: 0 0 5px 0;
+}
+
+.song-meta {
+  display: flex;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.song-album {
+  margin-right: 15px;
+}
+
+.play-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  margin-left: 10px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-button:hover {
+  opacity: 1;
+  color: var(--primary-color);
+}
+
+.related-artists-section {
+  margin-top: 25px;
+}
+
+.related-artists-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  border-left: 4px solid var(--primary-color);
+  padding-left: 10px;
+}
+
+.related-artists-list {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.related-artist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+}
+
+.related-artist-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.related-artist-name {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .artist-modal-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .artist-modal-image-container {
+    max-height: 300px;
+  }
+  
+  .artist-modal-content {
+    width: 95%;
+    max-height: 95vh;
+  }
+  
+  .artist-modal-title {
+    font-size: 1.8rem;
+    padding-right: 40px;
+  }
+  
+  .artist-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

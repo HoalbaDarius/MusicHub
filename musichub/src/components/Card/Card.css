@@ -1,0 +1,212 @@
+/* src/components/Card/Card.css */
+.card-link {
+    text-decoration: none;
+    color: inherit; /* Inherit text color */
+    display: block; /* Make the link fill the card area */
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column; /* Stack image and content vertically */
+  height: 100%; /* Make card fill grid item height */
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02); /* Subtle lift and scale */
+  box-shadow: 0 12px 25px var(--shadow-color);
+}
+
+.card-image-container {
+    width: 100%;
+    padding-top: 75%; /* Aspect ratio hack (e.g., 4:3). Adjust as needed */
+    position: relative;
+    overflow: hidden; /* Ensure image doesn't overflow */
+}
+
+.card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the container, cropping if needed */
+    transition: transform 0.4s ease; /* Smooth zoom on hover */
+}
+
+.card:hover .card-image {
+    transform: scale(1.08); /* Zoom image slightly on card hover */
+}
+
+
+.card-content {
+  padding: 1.2rem 1.5rem; /* More padding */
+  flex-grow: 1; /* Allow content to take remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.card:hover .card-title {
+    color: var(--primary-color);
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 1rem;
+  flex-grow: 1; /* Push badge to bottom */
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.card-type-badge {
+    align-self: flex-start; /* Align badge to the left */
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3em 0.8em;
+    border-radius: 20px; /* Pill shape */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Style badges based on type */
+.card-type-music .card-type-badge {
+    background-color: var(--primary-color);
+    color: var(--bg-color); /* Better contrast */
+}
+
+.card-type-merch .card-type-badge {
+    background-color: var(--secondary-color);
+    color: #333; /* Dark text on light teal */
+    [data-theme='dark'] & { /* Specific dark mode contrast */
+        color: #eee;
+        background-color: #038f7b; /* Darker teal */
+    }
+}
+
+.card-type-artist .card-type-badge {
+    background-color: #ff9800; /* Example orange */
+    color: #fff;
+    [data-theme='dark'] & {
+        background-color: #e65100; /* Darker orange */
+    }
+}
+
+/* Play overlay for music cards */
+.play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.playable-card:hover .play-overlay {
+  opacity: 1;
+}
+
+.play-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.play-icon::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 20px solid white;
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%);
+}
+
+/* Merch overlay customizations */
+.merch-overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Slightly darker background */
+}
+
+.details-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.details-icon::before,
+.details-icon::after {
+  content: '';
+  position: absolute;
+  background-color: white;
+}
+
+.details-icon::before {
+  width: 20px;
+  height: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.details-icon::after {
+  width: 2px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.preview-text {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Adjust box shadow for playable cards */
+.playable-card {
+  cursor: pointer;
+  position: relative;
+}
+
+.playable-card:hover {
+  box-shadow: 0 12px 25px var(--shadow-color), 0 0 0 2px var(--primary-color);
+}
+
+/* Different highlight color for merch cards */
+.card-type-merch.playable-card:hover {
+  box-shadow: 0 12px 25px var(--shadow-color), 0 0 0 2px var(--secondary-color);
+}
