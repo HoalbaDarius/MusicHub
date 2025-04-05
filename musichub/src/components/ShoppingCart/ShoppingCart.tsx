@@ -1,7 +1,7 @@
 // src/components/ShoppingCart/ShoppingCart.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart, CartItem } from '../../context/CartContext'; // Adjust path if needed
-import { Trash2, Plus, Minus } from 'lucide-react';
+import { Trash2, Plus, Minus, X, CreditCard, User, Calendar, MapPin, Ticket, ShoppingBag } from 'lucide-react';
 import './ShoppingCart.css'; // Create this CSS file next
 
 interface ShoppingCartProps {
@@ -37,16 +37,69 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({ onNavigate }) => {
 
   const totalAmount = getCartTotal();
   const itemCount = getCartItemCount(); // Get the total count for display
+  
+  // State for checkout modal
+  const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
+  const [checkoutStep, setCheckoutStep] = useState(1); // 1: Review Cart, 2: Payment details, 3: Confirmation
+  const [paymentInfo, setPaymentInfo] = useState({
+    cardNumber: '',
+    cardName: '',
+    expiryDate: '',
+    cvv: ''
+  });
 
-  // Placeholder function for handling the purchase action
+  // Handle opening checkout modal
   const handlePurchase = () => {
-      if (itemCount <= 0) return; // Don't proceed if cart is empty
-      // In a real app, this would redirect to a checkout page or integrate with a payment gateway
-      alert(`Proceeding to checkout with ${itemCount} item(s) for a total of ${formatCurrency(totalAmount)}. (Checkout functionality not implemented)`);
-      // Optionally clear the cart after initiating "purchase"
-      // clearCart();
-      // Optionally navigate to a confirmation page or back home
-      // onNavigate('main');
+    if (itemCount <= 0) return; // Don't proceed if cart is empty
+    setIsCheckoutModalOpen(true);
+    setCheckoutStep(1); // Reset to first step
+  };
+
+  // Close checkout modal and reset
+  const closeCheckoutModal = () => {
+    setIsCheckoutModalOpen(false);
+    // Optionally reset state after animation completes
+    setTimeout(() => {
+      setCheckoutStep(1);
+      setPaymentInfo({
+        cardNumber: '',
+        cardName: '',
+        expiryDate: '',
+        cvv: ''
+      });
+    }, 300);
+  };
+
+  // Handle step navigation
+  const handleNextStep = () => {
+    setCheckoutStep(checkoutStep + 1);
+  };
+
+  const handlePreviousStep = () => {
+    setCheckoutStep(checkoutStep - 1);
+  };
+
+  // Handle payment form changes
+  const handlePaymentInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setPaymentInfo({
+      ...paymentInfo,
+      [name]: value
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // In a real app, you would process payment here
+    handleNextStep();
+  };
+
+  // Handle complete purchase (final step)
+  const handleCompletePurchase = () => {
+    closeCheckoutModal();
+    clearCart();
+    onNavigate('main');
   };
 
    // Handler for changing quantity via buttons
@@ -157,6 +210,190 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({ onNavigate }) => {
                 Proceed to Checkout
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Checkout Modal */}
+      {isCheckoutModalOpen && (
+        <div className="ticket-modal-overlay" onClick={closeCheckoutModal}>
+          <div className="ticket-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="close-button" onClick={closeCheckoutModal}>
+              <X size={24} />
+            </button>
+            
+            <div className="ticket-modal-header">
+              <img src={cartItems[0]?.imageUrl || 'https://via.placeholder.com/600x200'} alt="Order" className="event-image" />
+              <div className="event-info-header">
+                <h2>Complete Your Purchase</h2>
+                <p className="artist-name">{itemCount} item{itemCount !== 1 ? 's' : ''} in your cart</p>
+              </div>
+            </div>
+
+            {/* Review Cart Step */}
+            {checkoutStep === 1 && (
+              <div className="ticket-selection-step">
+                <div className="event-details-summary">
+                  <div className="detail-item">
+                    <ShoppingBag size={18} />
+                    <span>{itemCount} Item{itemCount !== 1 ? 's' : ''}</span>
+                  </div>
+                </div>
+
+                <h3>Order Summary</h3>
+                <div className="checkout-items-summary">
+                  {cartItems.map(item => {
+                    const itemPrice = parsePrice(item.price);
+                    const itemSubtotal = itemPrice * item.quantity;
+                    
+                    return (
+                      <div key={item.cartItemId} className="checkout-item">
+                        <img src={item.imageUrl} alt={item.title} className="checkout-item-image" />
+                        <div className="checkout-item-details">
+                          <h4>{item.title}</h4>
+                          <div className="checkout-item-options">
+                            {item.selectedVariant && <span>Variant: {item.selectedVariant}</span>}
+                            {item.selectedSize && <span>Size: {item.selectedSize}</span>}
+                            {item.selectedColor && (
+                              <span>Color: {item.selectedColor}</span>
+                            )}
+                            <span>Quantity: {item.quantity}</span>
+                          </div>
+                          <div className="checkout-item-price">{formatCurrency(itemSubtotal)}</div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="ticket-summary">
+                  <div className="summary-row">
+                    <span>Subtotal</span>
+                    <span>{formatCurrency(totalAmount)}</span>
+                  </div>
+                  <div className="summary-row">
+                    <span>Shipping</span>
+                    <span>$5.00</span>
+                  </div>
+                  <div className="summary-row total">
+                    <span>Total</span>
+                    <span>{formatCurrency(totalAmount + 5)}</span>
+                  </div>
+                </div>
+
+                <button className="ticket-button" onClick={handleNextStep}>Proceed to Payment</button>
+              </div>
+            )}
+
+            {/* Payment Step */}
+            {checkoutStep === 2 && (
+              <div className="payment-step">
+                <h3>Payment Information</h3>
+                <form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label>
+                      <User size={18} />
+                      <span>Cardholder Name</span>
+                    </label>
+                    <input 
+                      type="text" 
+                      name="cardName" 
+                      value={paymentInfo.cardName}
+                      onChange={handlePaymentInfoChange}
+                      placeholder="John Doe"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>
+                      <CreditCard size={18} />
+                      <span>Card Number</span>
+                    </label>
+                    <input 
+                      type="text" 
+                      name="cardNumber" 
+                      value={paymentInfo.cardNumber}
+                      onChange={handlePaymentInfoChange}
+                      placeholder="1234 5678 9012 3456"
+                      maxLength={19}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label>Expiry Date</label>
+                      <input 
+                        type="text" 
+                        name="expiryDate" 
+                        value={paymentInfo.expiryDate}
+                        onChange={handlePaymentInfoChange}
+                        placeholder="MM/YY"
+                        maxLength={5}
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>CVV</label>
+                      <input 
+                        type="text" 
+                        name="cvv" 
+                        value={paymentInfo.cvv}
+                        onChange={handlePaymentInfoChange}
+                        placeholder="123"
+                        maxLength={3}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="ticket-summary">
+                    <div className="summary-row">
+                      <span>Subtotal</span>
+                      <span>{formatCurrency(totalAmount)}</span>
+                    </div>
+                    <div className="summary-row">
+                      <span>Shipping</span>
+                      <span>$5.00</span>
+                    </div>
+                    <div className="summary-row total">
+                      <span>Total</span>
+                      <span>{formatCurrency(totalAmount + 5)}</span>
+                    </div>
+                  </div>
+
+                  <div className="button-group">
+                    <button type="button" className="back-button" onClick={handlePreviousStep}>Back</button>
+                    <button type="submit" className="ticket-button">Complete Purchase</button>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            {/* Confirmation Step */}
+            {checkoutStep === 3 && (
+              <div className="confirmation-step">
+                <div className="confirmation-icon">✓</div>
+                <h3>Order Successful!</h3>
+                <p>Thank you for your purchase. Your order has been confirmed.</p>
+                
+                <div className="ticket-details">
+                  <div className="detail-item">
+                    <ShoppingBag size={18} />
+                    <span>{itemCount} Item{itemCount !== 1 ? 's' : ''}</span>
+                  </div>
+                  <div className="detail-item">
+                    <MapPin size={18} />
+                    <span>Shipping to your address</span>
+                  </div>
+                </div>
+                
+                <p className="confirmation-message">A confirmation email has been sent to your registered email address with your order details.</p>
+                
+                <button className="ticket-button" onClick={handleCompletePurchase}>Return to Store</button>
+              </div>
+            )}
           </div>
         </div>
       )}
