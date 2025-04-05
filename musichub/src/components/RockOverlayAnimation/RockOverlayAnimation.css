@@ -1,0 +1,117 @@
+/* RockOverlayAnimation.css */
+
+.rock-overlay-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow clicking through the container */
+    z-index: 998; /* Below a potential navbar but above other content */
+    overflow: hidden;
+  }
+  
+  /* Base style for animated elements */
+  .rock-element {
+    position: absolute;
+    top: -10%; /* Start above the screen */
+    will-change: transform, opacity; /* Optimize animation */
+    opacity: 0; /* Start invisible */
+    font-size: 20px; /* Base size, can be overridden */
+  }
+  
+  /* Lightning Bolt Styles */
+  .lightning-bolt {
+    color: #FFFF00; /* Bright yellow */
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFFF00, 0 0 15px #FFD700; /* Glow effect */
+    /* Animation: falling down + flashing */
+    animation: fallDown linear infinite, flash linear infinite;
+  }
+  
+  /* Rock Hand Styles */
+  .rock-hand {
+    color: #333; /* Dark grey/black silhouette */
+    /* Animation: falling down + tumbling/drifting */
+    animation: fallDown linear infinite, tumbleAndDrift ease-in-out infinite;
+    transform: rotate(0deg); /* Initial rotation */
+  }
+  
+  /* Dark theme adjustments (Optional: Adjust if needed) */
+  html[data-theme='dark'] .rock-hand {
+    color: #ccc; /* Lighter grey for dark backgrounds */
+  }
+  html[data-theme='dark'] .lightning-bolt {
+    text-shadow: 0 0 6px #FFF, 0 0 12px #FFFF00, 0 0 18px #FFD700; /* Slightly enhanced glow */
+  }
+  
+  
+  /* --- Animations --- */
+  
+  /* Basic Falling Animation (Used by both elements) */
+  @keyframes fallDown {
+    0% {
+      top: -10%;
+      opacity: 0;
+    }
+    5% { /* Appear quickly */
+      opacity: 1;
+    }
+    95% { /* Stay visible most of the time */
+      opacity: 1;
+    }
+    100% { /* Fall off the bottom */
+      top: 110%;
+      opacity: 0;
+    }
+  }
+  
+  /* Lightning Flash Animation */
+  @keyframes flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; } /* Dim slightly for a flash effect */
+    /* You could make this more complex with more steps for a strobe effect */
+     0%, 48%, 52%, 100% { text-shadow: 0 0 5px #FFF, 0 0 10px #FFFF00, 0 0 15px #FFD700; opacity: 1;}
+     50% { text-shadow: 0 0 2px #FFF, 0 0 4px #FFFF00; opacity: 0.7; } /* Dimmer flash */
+  }
+  
+  /* Rock Hand Tumbling and Drifting Animation */
+  @keyframes tumbleAndDrift {
+    0% {
+      transform: translateX(0px) rotate(0deg);
+    }
+    25% {
+      transform: translateX(20px) rotate(45deg);
+    }
+    50% {
+      transform: translateX(-10px) rotate(-20deg);
+    }
+    75% {
+      transform: translateX(30px) rotate(60deg);
+    }
+    100% {
+      transform: translateX(0px) rotate(0deg); /* Loop smoothly-ish */
+    }
+  }
+  
+  /* --- Variations --- */
+  /* Add variations in speed and animation style using nth-child or random inline styles */
+  
+  /* Example: Make some lightning bolts fall faster and flash quicker */
+  .rock-overlay-container .lightning-bolt:nth-child(3n) {
+    animation-duration: 5s, 0.5s; /* fallDuration, flashDuration */
+  }
+  
+  /* Example: Make some rock hands tumble more wildly */
+  .rock-overlay-container .rock-hand:nth-child(4n) {
+    animation-name: fallDown, wildTumble;
+    animation-duration: 9s, 4s; /* fallDuration, tumbleDuration */
+  }
+  
+  @keyframes wildTumble {
+     0% { transform: translateX(0px) rotate(0deg) scale(1); }
+    20% { transform: translateX(-30px) rotate(-90deg) scale(1.1); }
+    40% { transform: translateX(40px) rotate(180deg) scale(0.9); }
+    60% { transform: translateX(-20px) rotate(90deg) scale(1); }
+    80% { transform: translateX(10px) rotate(-180deg) scale(1.1); }
+   100% { transform: translateX(0px) rotate(0deg) scale(1); }
+  }
