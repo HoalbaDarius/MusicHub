@@ -120,6 +120,8 @@
 
 .popular-songs-section {
   margin-top: 10px;
+  width: 100%;
+  padding: 0 30px 20px;
 }
 
 .popular-songs-title {
@@ -134,13 +136,20 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
 .song-item {
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  padding: 12px 15px;
   border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  transition: background-color 0.2s;
+  border-radius: 6px;
+}
+
+.song-item:hover {
+  background-color: rgba(128, 128, 128, 0.1);
 }
 
 .song-number {
@@ -184,15 +193,20 @@
   cursor: pointer;
   margin-left: 10px;
   opacity: 0.8;
-  transition: opacity 0.2s;
+  transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  background-color: rgba(128, 128, 128, 0.1);
 }
 
 .play-button:hover {
   opacity: 1;
   color: var(--primary-color);
+  background-color: rgba(128, 128, 128, 0.2);
+  transform: scale(1.05);
 }
 
 .related-artists-section {
@@ -269,5 +283,19 @@
   
   .artist-stats {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .popular-songs-section {
+    padding: 0 20px 20px;
+  }
+  
+  .song-item {
+    padding: 10px;
+  }
+  
+  .song-cover {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
   }
 }
