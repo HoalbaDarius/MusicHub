@@ -9,6 +9,7 @@ import SakuraAnimation from './components/SakuraAnimation/SakuraAnimation';
 import RockMusicAnimation from './components/RockOverlayAnimation/RockOverlayAnimation';
 import KPopOverlayAnimation from './components/KPopOverlayAnimation/KPopOverlayAnimation';
 import TrapOverlayAnimation from './components/TrapOverlayAnimation/TrapOverlayAnimation';
+import RapOverlayAnimation from './components/RapOverlayAnimation/RapOverlayAnimation';
 import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 import { CartProvider } from './context/CartContext'; // Import CartProvider
 import './index.css'; // Global styles
@@ -147,6 +148,8 @@ function App() {
       <RockMusicAnimation isActive={styleTheme === 'rock'} elementCount={20} />
       <KPopOverlayAnimation isActive={styleTheme === 'kpop'} elementCount={20} />
       <TrapOverlayAnimation isActive={styleTheme === 'trap'} elementCount={15} />
+      <RapOverlayAnimation isActive={styleTheme === 'rap'} elementCount={15} />
+      
 
         {/* --- Page Content --- */}
         <div className="page-content"> {/* Optional wrapper for content below navbar */}
