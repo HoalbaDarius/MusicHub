@@ -1,0 +1,538 @@
+/* src/components/ShoppingCart/ShoppingCart.css */
+
+.shopping-cart-page {
+    padding-top: 80px; /* Adjust based on navbar height */
+    padding-bottom: 40px;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the content */
+  }
+  
+  .cart-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  
+  /* Empty Cart Styles */
+  .cart-empty {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    margin-top: 2rem;
+  }
+  
+  .cart-empty p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color-secondary);
+  }
+  
+  .shop-now-btn {
+    padding: 10px 25px;
+    font-size: 1rem;
+  }
+  
+  /* Cart Content Layout */
+  .cart-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .cart-items-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* Individual Cart Item Styles */
+  .cart-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto auto; /* Image, Details, Qty, Subtotal, Remove */
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    border: 1px solid var(--border-color);
+  }
+  
+  .cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+  }
+  
+  .cart-item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    overflow: hidden; /* Prevent long titles from breaking layout */
+  }
+  
+  .cart-item-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .cart-item-options {
+    font-size: 0.85rem;
+    color: var(--text-color-secondary);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .cart-item-options span {
+      display: inline-flex; /* Align swatch with text */
+      align-items: center;
+      gap: 4px;
+  }
+  
+  
+  .cart-item-color-swatch {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      vertical-align: middle; /* Align with text */
+  }
+  
+  
+  .cart-item-price {
+    font-size: 0.9rem;
+    color: var(--text-color-secondary);
+    margin: 0;
+  }
+  
+  /* Quantity controls specifically for the cart */
+  .cart-item-quantity {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center within its grid cell */
+  }
+  
+  .cart-quantity-controls {
+      /* Inherits from .quantity-controls, add specifics here if needed */
+      transform: scale(0.9); /* Slightly smaller controls in cart */
+  }
+  .cart-quantity-input {
+      width: 40px; /* Adjust width */
+      text-align: center;
+      padding: 4px 2px; /* Adjust padding */
+      font-size: 0.9rem; /* Adjust font size */
+  }
+  
+  
+  .cart-item-subtotal {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text-color);
+    text-align: right;
+    min-width: 100px; /* Ensure space */
+  }
+  
+  .cart-item-remove {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .remove-item-btn {
+    background: none;
+    border: none;
+    color: var(--text-color-secondary);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .remove-item-btn:hover,
+  .remove-item-btn:focus {
+    color: var(--danger-color, #dc3545); /* Use danger color if defined */
+    background-color: var(--hover-bg-light);
+    outline: none;
+  }
+  
+  /* Cart Summary Section */
+  .cart-summary {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--card-bg-alt, var(--card-bg)); /* Slightly different bg if desired */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align content to the right */
+    gap: 1rem;
+  }
+  
+  .cart-total {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  
+  .cart-total strong {
+      font-weight: 700; /* Make total price bold */
+  }
+  
+  .cart-actions {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .clear-cart-btn {
+    /* Specific styles for clear button if needed */
+  }
+  
+  .purchase-btn {
+    /* Specific styles for purchase button if needed */
+  }
+  
+  .purchase-btn:disabled {
+      background-color: var(--button-disabled-bg);
+      color: var(--button-disabled-color);
+      cursor: not-allowed;
+  }
+  
+  
+  /* --- Responsiveness --- */
+  
+  @media (max-width: 768px) {
+    .shopping-cart-page {
+      padding-top: 70px; /* Adjust if mobile navbar height is different */
+    }
+  
+    .cart-item {
+      grid-template-columns: auto 1fr auto; /* Image, Details+Qty, Remove */
+      grid-template-rows: auto auto; /* Row 1: Image, Details, Remove | Row 2: Image, Qty+Subtotal */
+      gap: 0.5rem 1rem; /* Row gap, Column gap */
+      position: relative; /* For absolute positioning of remove button if needed */
+    }
+  
+    .cart-item-image {
+      grid-row: 1 / 3; /* Span both rows */
+      width: 60px;
+      height: 60px;
+    }
+  
+    .cart-item-details {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+    }
+    .cart-item-title {
+        font-size: 1rem;
+    }
+     .cart-item-options {
+        font-size: 0.8rem;
+     }
+  
+    .cart-item-quantity {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      justify-content: flex-start; /* Align left */
+      padding-bottom: 0.5rem; /* Space below */
+    }
+  
+    .cart-item-subtotal {
+      grid-column: 2 / 3; /* Align with quantity */
+      grid-row: 2 / 3;
+      text-align: right;
+      padding-right: 10px; /* Add some padding */
+      padding-bottom: 0.5rem;
+      font-size: 0.95rem;
+      align-self: center; /* Vertically center */
+      min-width: auto; /* Reset min-width */
+    }
+  
+    .cart-item-remove {
+      grid-column: 3 / 4;
+      grid-row: 1 / 2;
+      align-self: flex-start; /* Align top */
+    }
+  
+    .cart-summary {
+      align-items: center; /* Center summary items on smaller screens */
+    }
+  
+    .cart-actions {
+      flex-direction: column; /* Stack buttons */
+      width: 100%;
+    }
+  
+     .cart-actions .btn {
+        width: 100%; /* Make buttons full width */
+        text-align: center;
+     }
+  }
+  
+  @media (max-width: 480px) {
+     .cart-item {
+        grid-template-columns: auto 1fr; /* Image, Content */
+        grid-template-rows: auto auto auto auto; /* Image, Title, Options+Price, Qty+Sub+Remove */
+        gap: 0.5rem;
+     }
+     .cart-item-image {
+        grid-row: 1 / 5;
+        width: 50px;
+        height: 50px;
+     }
+      .cart-item-details {
+         grid-column: 2 / 3;
+         grid-row: 1 / 3; /* Span Title and Options */
+         gap: 0.1rem;
+      }
+      .cart-item-title {
+          grid-row: 1 / 2;
+      }
+      .cart-item-options {
+          grid-row: 2 / 3;
+          font-size: 0.75rem;
+      }
+       .cart-item-price {
+          display: none; /* Hide unit price on very small screens */
+       }
+  
+     .cart-item-quantity {
+        grid-column: 2 / 3;
+        grid-row: 3 / 4; /* Move below details */
+     }
+     .cart-item-subtotal {
+        grid-column: 2 / 3;
+        grid-row: 4 / 5; /* Bottom row */
+        text-align: left; /* Align left */
+        padding: 0;
+     }
+     .cart-item-remove {
+         grid-column: 2 / 3;
+         grid-row: 4 / 5; /* Bottom row */
+         justify-content: flex-end; /* Align right */
+         align-self: center;
+     }
+      .cart-total {
+          font-size: 1.1rem;
+      }
+  }
+
+  .cart-summary {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--card-bg-alt, var(--card-bg)); /* Slightly different bg if desired */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align content to the right */
+    gap: 1.5rem; /* Increased gap for better separation */
+  }
+  
+  .cart-total {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  
+  .cart-total strong {
+      font-weight: 700; /* Make total price bold */
+  }
+  
+  .cart-actions {
+    display: flex;
+    gap: 1rem;
+    width: 100%; /* Make container take width for alignment */
+    justify-content: flex-end; /* Align buttons to the right */
+  }
+  
+  /* --- Specific Button Styling --- */
+  
+  /* Base button styles assumed from global .btn or defined here */
+  /* Example base .btn styles (if not defined globally) */
+  /*
+  .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+  }
+  
+  .btn-primary {
+      background-color: var(--primary-color);
+      color: var(--button-text-color, white);
+  }
+  .btn-primary:hover {
+      background-color: var(--primary-color-dark);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
+  .btn-secondary {
+       background-color: var(--secondary-button-bg, #6c757d);
+       color: var(--button-text-color, white);
+       border: 1px solid transparent;
+   }
+  
+  .btn-secondary:hover {
+       background-color: var(--secondary-button-hover-bg, #5a6268);
+   }
+  */
+  
+  
+  /* Clear Cart Button (Secondary Action) */
+  .clear-cart-btn {
+    /* Inherits .btn, potentially .btn-secondary */
+    background-color: transparent;
+    color: var(--text-color-secondary);
+    border: 1px solid var(--border-color); /* Use border color */
+    padding: 8px 18px; /* Slightly adjust padding if needed */
+  }
+  
+  .clear-cart-btn:hover,
+  .clear-cart-btn:focus {
+    background-color: var(--hover-bg-light); /* Subtle background hover */
+    color: var(--text-color);
+    border-color: var(--text-color-secondary); /* Darken border slightly on hover */
+    box-shadow: none; /* Remove potential inherited shadow */
+    outline: none;
+  }
+  
+  
+  /* Purchase/Checkout Button (Primary Action) */
+  .purchase-btn {
+     /* Inherits .btn, potentially .btn-primary */
+     background-color: var(--primary-color); /* Ensure primary color */
+     color: var(--button-text-color, white);
+     padding: 10px 25px; /* Make it slightly larger */
+     font-weight: 600; /* Make text bolder */
+     border: 1px solid transparent;
+  }
+  
+  .purchase-btn:hover,
+  .purchase-btn:focus {
+    background-color: var(--primary-color-dark); /* Darker shade on hover */
+    color: var(--button-text-color, white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Add a subtle shadow */
+    outline: none;
+  }
+  
+  /* Disabled state for Purchase Button */
+  .purchase-btn:disabled,
+  .purchase-btn[disabled] { /* Target both ways */
+      background-color: var(--button-disabled-bg, #cccccc); /* Use a distinct disabled background */
+      color: var(--button-disabled-color, #666666);
+      cursor: not-allowed;
+      border-color: transparent;
+      box-shadow: none; /* Remove shadow when disabled */
+  }
+  
+  
+  /* --- Responsiveness Adjustments for Buttons --- */
+  
+  @media (max-width: 768px) {
+    .cart-summary {
+      align-items: stretch; /* Stretch items to full width */
+    }
+  
+    .cart-total {
+        text-align: center; /* Center total text */
+        margin-bottom: 1rem; /* Add space below total */
+    }
+  
+    .cart-actions {
+      flex-direction: column-reverse; /* Stack buttons, Checkout on top */
+      width: 100%;
+      gap: 0.75rem; /* Adjust gap for stacked buttons */
+      align-items: stretch; /* Make buttons take full width */
+    }
+  
+     .cart-actions .btn {
+        width: 100%; /* Make buttons full width */
+        text-align: center;
+        padding: 12px 20px; /* Consistent padding for stacked buttons */
+     }
+  }
+  
+  /* ... (keep existing media queries below this point if any) ... */
+  
+  @media (max-width: 480px) {
+      /* Further adjustments for very small screens if needed */
+      .cart-total {
+          font-size: 1.1rem;
+      }
+       .cart-actions .btn {
+          font-size: 0.95rem; /* Slightly smaller text */
+       }
+  }
+
+  .cart-empty {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    margin-top: 2rem;
+    display: flex; /* Use flexbox for easier centering */
+    flex-direction: column; /* Stack paragraph and button */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically (if needed) */
+  }
+  
+  .cart-empty p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color-secondary);
+  }
+  
+  /* --- Styling for the "Continue Shopping" Button --- */
+  .shop-now-btn {
+    /* Inherits .btn and .btn-primary potentially */
+    background-color: var(--primary-color); /* Ensure primary color */
+    color: var(--button-text-color, white); /* Text color for primary button */
+    padding: 12px 30px; /* Generous padding */
+    font-size: 1.05rem; /* Slightly larger font */
+    font-weight: 600;
+    text-transform: uppercase; /* Optional: make text uppercase */
+    letter-spacing: 0.5px;   /* Optional: add letter spacing */
+    border: none; /* Remove border if inherited */
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease; /* Add transform to transition */
+    display: inline-block; /* Ensure it behaves like a block for centering */
+  }
+  
+  .shop-now-btn:hover,
+  .shop-now-btn:focus {
+    background-color: var(--primary-color-dark); /* Darker shade on hover */
+    color: var(--button-text-color, white);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+    transform: translateY(-2px); /* Subtle lift effect */
+    outline: none;
+  }
+  
+  .shop-now-btn:active {
+      transform: translateY(0); /* Press effect */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  }
+  
