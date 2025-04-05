@@ -1,0 +1,112 @@
+/* TrapOverlayAnimation.css */
+
+.trap-overlay-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 998;
+    overflow: hidden;
+  }
+  
+  /* Base style */
+  .trap-element {
+    position: absolute;
+    top: -10%;
+    will-change: transform, opacity;
+    opacity: 0;
+    font-size: 22px; /* Slightly larger base size */
+    /* Base falling animation */
+    animation: fallTrap linear infinite;
+  }
+  
+  /* Money Styles (Dollar Bills) */
+  .trap-money-bill {
+    color: #4CAF50; /* Green */
+    /* Add a slight spin */
+    animation: fallTrap linear infinite, spinFall linear infinite;
+  }
+  
+  /* Money Styles (Dollar Signs) */
+  .trap-money-sign {
+    color: #FFD700; /* Gold */
+     /* Add a slight spin */
+    animation: fallTrap linear infinite, spinFall linear infinite;
+     /* Optional: Purple glow for some signs via JS/nth-child */
+  }
+  
+  /* Diamond Styles */
+  .trap-diamond {
+    color: #B3E5FC; /* Light Cyan/Blue */
+    /* Glint effect */
+    text-shadow: 0 0 5px #FFF, 0 0 10px #81D4FA, 0 0 15px #4FC3F7;
+    /* Glint animation */
+    animation: fallTrap linear infinite, glint linear infinite;
+     /* Optional: Purple tint via JS/nth-child */
+  }
+  
+  /* Optional Purple Tint for Diamonds (applied randomly via JS) */
+  .trap-diamond.purple-tint {
+      color: #E1BEE7; /* Light Purple */
+      text-shadow: 0 0 5px #FFF, 0 0 10px #CE93D8, 0 0 15px #BA68C8;
+  }
+  /* Optional Purple Glow for Dollar Signs (applied randomly via JS) */
+  .trap-money-sign.purple-glow {
+      text-shadow: 0 0 6px #BA68C8, 0 0 10px #AB47BC;
+  }
+  
+  
+  /* --- Animations --- */
+  
+  /* Falling Animation - Slightly faster, appears quicker */
+  @keyframes fallTrap {
+    0% {
+      top: -10%;
+      opacity: 0;
+      transform: translateY(0); /* Base transform */
+    }
+    3% { /* Appear quickly */
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      top: 110%;
+      opacity: 0;
+      /* Apply the ending transform state from other animations if needed */
+    }
+  }
+  
+  /* Gentle Spinning for Money */
+  @keyframes spinFall {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+  
+  /* Diamond Glinting Effect */
+  @keyframes glint {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.9); } /* Quick flash/scale */
+    /* More complex glint: */
+    /* 0%, 100% { text-shadow: 0 0 5px #FFF, 0 0 10px #81D4FA, 0 0 15px #4FC3F7; }
+    50% { text-shadow: 0 0 8px #FFF, 0 0 15px #FFF, 0 0 20px #81D4FA; } */
+  }
+  
+  
+  /* --- Variations --- */
+  /* Variations primarily handled by JS for color and random speeds */
+  /* Example CSS variation: Faster spin for some money */
+  .trap-overlay-container .trap-money-bill:nth-child(4n),
+  .trap-overlay-container .trap-money-sign:nth-child(4n) {
+    /* Make spinFall faster for these elements */
+    /* Note: Need to redeclare full animation property if changing name/count */
+     /* Example: animation: fallTrap 7s linear infinite, spinFall 1.5s linear infinite; */
+     /* Easier to set spinFall duration via JS */
+  }

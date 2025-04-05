@@ -1,0 +1,124 @@
+/* KPopOverlayAnimation.css */
+
+.kpop-overlay-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow clicking through */
+    z-index: 998;
+    overflow: hidden;
+  }
+  
+  /* Base style for animated elements */
+  .kpop-element {
+    position: absolute;
+    top: -10%; /* Start above screen */
+    will-change: transform, opacity;
+    opacity: 0;
+    font-size: 18px; /* Base size */
+    /* Default animation setup - can be overridden */
+    animation: fallGently linear infinite;
+  }
+  
+  /* Star Styles */
+  .kpop-star {
+    /* Color will be set inline via JS */
+    /* Glow effect - color part will be set inline too */
+    text-shadow: 0 0 4px #fff, 0 0 8px #fff; /* Base white glow */
+    /* Add twinkle and float animations */
+    animation: fallGently linear infinite, floatDrift ease-in-out infinite, twinkle linear infinite;
+  }
+  
+  /* Microphone Styles */
+  .kpop-mic {
+    color: #bdbdbd; /* Light silver/grey */
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.7); /* Subtle shine */
+     /* Add bobbing animation */
+    animation: fallGently linear infinite, bobbing ease-in-out infinite;
+  }
+  
+  /* --- Animations --- */
+  
+  /* Gentler Falling Animation */
+  @keyframes fallGently {
+    0% {
+      top: -10%;
+      opacity: 0;
+    }
+    10% { /* Fade in gently */
+      opacity: 0.9;
+    }
+    90% { /* Stay visible */
+      opacity: 0.9;
+    }
+    100% { /* Fall off the bottom */
+      top: 110%;
+      opacity: 0;
+    }
+  }
+  
+  /* Gentle Floating/Drifting Horizontally */
+  @keyframes floatDrift {
+    0% {
+      transform: translateX(0px);
+    }
+    50% {
+      transform: translateX(25px); /* Less aggressive drift */
+    }
+    100% {
+      transform: translateX(0px);
+    }
+  }
+  
+  /* Star Twinkle Effect */
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.9; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.8); } /* Dim and slightly shrink */
+  }
+  
+  /* Microphone Bobbing Effect */
+  @keyframes bobbing {
+    0% {
+      transform: translateY(0px) rotate(-2deg);
+    }
+    50% {
+      transform: translateY(-5px) rotate(2deg); /* Bob up slightly and rotate */
+    }
+    100% {
+      transform: translateY(0px) rotate(-2deg);
+    }
+  }
+  
+  /* --- Variations --- */
+  /* Example: Make some stars fall slower and drift wider */
+  .kpop-overlay-container .kpop-star:nth-child(3n) {
+    animation-name: fallGently, wideFloatDrift, twinkle; /* Optional: Define a new drift */
+    animation-duration: 18s, 10s, 3s; /* Example: Slower fall, wider drift, standard twinkle */
+     /* Use inline styles for more control */
+  }
+  
+  /* Example: Make some microphones rotate more */
+  .kpop-overlay-container .kpop-mic:nth-child(4n) {
+    animation-name: fallGently, spinBob; /* Optional: Define a new bobbing */
+    animation-duration: 14s, 5s; /* Example: Standard fall, different bob */
+    /* Use inline styles for more control */
+  }
+  
+  /* Optional Wider Drift */
+  @keyframes wideFloatDrift {
+    0% { transform: translateX(0px); }
+    25% { transform: translateX(40px); }
+    75% { transform: translateX(-20px); }
+    100% { transform: translateX(0px); }
+  }
+  
+  /* Optional Spin Bob */
+  @keyframes spinBob {
+     0% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-8px) rotate(15deg); }
+    50% { transform: translateY(0px) rotate(-10deg); }
+    75% { transform: translateY(-4px) rotate(5deg); }
+   100% { transform: translateY(0px) rotate(0deg); }
+  }
