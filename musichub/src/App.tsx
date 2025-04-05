@@ -1,13 +1,15 @@
 // src/App.tsx
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
-import { StyleThemeOption } from './components/ThemeCarousel/ThemeCarousel';
 import MainScreen from './components/MainScreen/MainScreen';
+import Events from './components/Events/Events';
+// Import the updated interface type if it includes imageUrl
+import { StyleThemeOption } from './components/ThemeCarousel/ThemeCarousel';
 import SakuraAnimation from './components/SakuraAnimation/SakuraAnimation';
 import RockMusicAnimation from './components/RockOverlayAnimation/RockOverlayAnimation';
 import KPopOverlayAnimation from './components/KPopOverlayAnimation/KPopOverlayAnimation';
 import TrapOverlayAnimation from './components/TrapOverlayAnimation/TrapOverlayAnimation';
-// Import the updated interface type if it includes imageUrl
+import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 import './index.css';
 
 type Theme = 'light' | 'dark';
@@ -142,6 +144,7 @@ function App() {
       <RockMusicAnimation isActive={styleTheme === 'rock'} elementCount={20} />
       <KPopOverlayAnimation isActive={styleTheme === 'kpop'} elementCount={20} />
       <TrapOverlayAnimation isActive={styleTheme === 'trap'} elementCount={15} />
+      
       {/* Conditional rendering based on current page */}
       {currentPage === 'main' && (
         <MainScreen
@@ -152,6 +155,21 @@ function App() {
           onStyleThemeChange={handleStyleThemeChange}
           imgBanner={imgBanner}
           onPreviewSong={handlePreviewSong}
+        />
+      )}
+
+      {currentPage === 'events' && (
+        <Events />
+      )}
+      
+      {/* Music Player */}
+      {isPlayerVisible && currentSong && (
+        <MusicPlayer
+          songUrl={currentSong.songUrl}
+          songTitle={currentSong.songTitle}
+          artistName={currentSong.artistName}
+          coverImage={currentSong.coverImage}
+          onClose={handleClosePlayer}
         />
       )}
     </div>

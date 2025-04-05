@@ -1,0 +1,296 @@
+.events-section {
+  padding: 2rem 0;
+}
+
+.events-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Carousel Styling */
+.events-carousel {
+  position: relative;
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden; /* Keep hidden to control what's visible */
+  touch-action: pan-y;
+}
+
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); /* Smoother easing function */
+  user-select: none;
+  padding: 1rem 0;
+  margin: 0; /* Remove negative margin to prevent overflow */
+}
+
+.carousel-container.dragging {
+  transition: none;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  position: absolute;
+  width: 110%;
+  left: -5%;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
+.carousel-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 5;
+  pointer-events: auto; /* Enable pointer events on buttons */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-button:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.1);
+}
+
+.carousel-button.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: scale(1);
+  box-shadow: none;
+}
+
+.carousel-button.disabled:hover {
+  background-color: #ccc;
+  transform: scale(1);
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.carousel-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-indicator.active {
+  background-color: var(--primary-color);
+  transform: scale(1.2);
+}
+
+/* Event Card Styling */
+.event-card {
+  flex: 0 0 100%;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 0; /* Remove margin from card */
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  touch-action: none;
+  pointer-events: auto;
+  transform: scale(1);
+  opacity: 1; /* Visible cards are fully opaque */
+  height: 100%; /* Ensure all cards have the same height */
+  min-height: 600px; /* Set a minimum height for all cards */
+}
+
+@media (min-width: 768px) {
+  .event-card {
+    flex: 0 0 calc(50% - 2rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .event-card {
+    flex: 0 0 calc(33.333% - 2rem);
+  }
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.event-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.event-details {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute content evenly */
+}
+
+.event-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  line-height: 1.2; /* Control line height for consistent spacing */
+  height: 3.6rem; /* Fixed height for title (2 lines) */
+  overflow: hidden; /* Hide overflow text */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+}
+
+.event-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: var(--text-color-secondary);
+}
+
+.event-info svg {
+  margin-right: 0.5rem;
+}
+
+.event-description {
+  margin: 1rem 0;
+  flex-grow: 1;
+  color: var(--text-color);
+  height: 4.5rem; /* Fixed height for description */
+  overflow: hidden; /* Hide overflow text */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+}
+
+/* Countdown Styling */
+.countdown-container {
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+  padding: 1rem;
+  border-radius: 6px;
+  margin-top: auto;
+}
+
+.countdown-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.countdown-item {
+  text-align: center;
+  flex: 1;
+}
+
+.countdown-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.countdown-label {
+  font-size: 0.75rem;
+  color: var(--text-color-secondary);
+  text-transform: uppercase;
+}
+
+.event-button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-decoration: none; /* Add this to ensure the text is visible */
+  display: inline-block; /* Make sure it's a block element */
+  text-align: center; /* Center the text */
+}
+
+.event-button:hover {
+  background-color: var(--secondary-color);
+  color: white; /* Ensure text remains white on hover */
+  transform: translateY(-2px); /* Slight lift effect instead of potentially problematic effects */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for better hover effect */
+}
+
+/* Card track - wraps all individual card positions */
+.card-track {
+  display: flex;
+  position: relative;
+  width: 100%;
+  padding: 0; /* Remove padding from track */
+}
+
+/* Individual card position */
+.card-position {
+  position: relative;
+  flex: 0 0 calc(100% / 3); /* For 3 cards per view */
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  padding: 0 0.75rem; /* Add padding to ensure cards aren't cut off at edges */
+  box-sizing: border-box;
+  width: 33.333%; /* Set explicit width for desktop */
+}
+
+@media (max-width: 1023px) {
+  .card-position {
+    flex: 0 0 50%; /* For 2 cards per view */
+    width: 50%; /* Set explicit width for tablet */
+  }
+}
+
+@media (max-width: 767px) {
+  .card-position {
+    flex: 0 0 100%; /* For 1 card per view */
+    width: 100%; /* Set explicit width for mobile */
+  }
+}
+
+/* Swipe instruction hint for mobile */
+@media (max-width: 768px) {
+  .events-carousel::after {
+    content: 'Swipe to navigate';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--text-color-secondary);
+    opacity: 0.7;
+    animation: fadeOut 5s forwards;
+  }
+  
+  @keyframes fadeOut {
+    0% { opacity: 0.7; }
+    70% { opacity: 0.7; }
+    100% { opacity: 0; }
+  }
+}
