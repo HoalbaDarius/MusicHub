@@ -299,3 +299,98 @@
          background-color: rgba(128, 128, 128, 0.1);
      }
   }
+
+  .navbar-desktop-icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Space between theme toggle and cart icon */
+  }
+  
+  /* Hide desktop icons on mobile */
+  @media screen and (max-width: 960px) {
+    .navbar-desktop-icons {
+      display: none;
+    }
+  }
+  
+  /* Cart Link Base Styles (for both mobile and desktop) */
+  .cart-link,
+  .cart-link-desktop {
+    position: relative; /* Needed for badge positioning */
+    display: inline-flex; /* Align icon and badge */
+    align-items: center;
+    color: var(--text-color); /* Match other nav links */
+    padding: 5px; /* Add some padding for easier clicking */
+    border-radius: 50%; /* Make it circular */
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .cart-link:hover,
+  .cart-link-desktop:hover,
+  .cart-link.active, /* Style for active cart page */
+  .cart-link-desktop.active {
+    color: var(--primary-color); /* Highlight color on hover/active */
+    background-color: var(--hover-bg-light); /* Subtle background on hover */
+  }
+  
+  /* Cart Badge */
+  .cart-badge {
+    position: absolute;
+    top: -5px;    /* Position above the icon */
+    right: -8px;  /* Position to the right of the icon */
+    background-color: var(--accent-color, red); /* Use accent or default red */
+    color: white;
+    border-radius: 50%; /* Circular badge */
+    padding: 2px 6px;  /* Adjust padding for size */
+    font-size: 0.7rem; /* Small font size */
+    font-weight: bold;
+    line-height: 1;   /* Ensure text is centered vertically */
+    min-width: 18px;  /* Minimum width */
+    text-align: center;
+    border: 1px solid var(--card-bg); /* Optional border to lift it off */
+  }
+  
+  
+  /* --- Mobile Specific Cart Styles --- */
+  .nav-item-cart-mobile {
+     display: none; /* Hide by default, shown via media query */
+     margin-left: auto; /* Push cart to the right in mobile menu */
+     padding-right: 10px;
+  }
+  
+  .cart-link-text {
+      display: none; /* Hide text label by default */
+      margin-left: 8px; /* Space between icon and text */
+      font-size: 1rem; /* Match other mobile nav links */
+  }
+  
+  @media screen and (max-width: 960px) {
+    /* Show mobile cart item */
+    .nav-item-cart-mobile {
+      display: flex; /* Use flex to align icon and text */
+      align-items: center;
+      width: auto; /* Allow it to size naturally */
+      padding: 10px 0; /* Match other nav items padding */
+      margin: 0; /* Reset margin */
+    }
+  
+    /* Show text label on mobile */
+    .cart-link-text {
+        display: inline;
+    }
+  
+    .nav-item-cart-mobile .cart-link {
+        width: 100%; /* Make the link take full width if needed */
+        justify-content: flex-start; /* Align content left */
+        border-radius: 0; /* Remove circular shape */
+        padding: 10px 20px; /* Match other mobile links padding */
+    }
+     .nav-item-cart-mobile .cart-link:hover {
+        background-color: var(--hover-bg-light);
+     }
+     /* Adjust badge position slightly for mobile if needed */
+      .nav-item-cart-mobile .cart-badge {
+          top: 5px;
+          right: 5px;
+      }
+  }
