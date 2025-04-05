@@ -24,7 +24,7 @@ const featuredMusic: Item[] = [
     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/9c/Logic_-_Under_Pressure_%28Deluxe_Edition%29.jpg/220px-Logic_-_Under_Pressure_%28Deluxe_Edition%29.jpg', 
     type: 'music', 
     link: '#',
-    songUrl: '/UnderPressure.mp3'
+    songUrl: '/music/UnderPressure.mp3'
   },
   { 
     id: 'm2', 
@@ -33,7 +33,7 @@ const featuredMusic: Item[] = [
     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png', 
     type: 'music', 
     link: '#',
-    songUrl: 'https://cdn.freesound.org/previews/612/612092_5674468-lq.mp3' // External URL as fallback
+    songUrl: 'music/The Weeknd - Blinding Lights (Official Video).mp3' // External URL as fallback
   },
   { 
     id: 'm3', 
@@ -42,7 +42,7 @@ const featuredMusic: Item[] = [
     imageUrl: 'https://www.billboard.com/wp-content/uploads/media/Billie-Eilish-Bad-Guy-screenshot-2019-billboard-1500.jpg', 
     type: 'music', 
     link: '#',
-    songUrl: 'https://cdn.freesound.org/previews/392/392617_5121236-lq.mp3' // External URL as fallback
+    songUrl: 'music/Billie Eilish - bad guy (Official Music Video).mp3' // External URL as fallback
   },
 ];
 
@@ -93,28 +93,30 @@ const artistRecommendations: ArtistItem[] = [
     popularSongs: [
       {
         id: 'marko-song-1',
-        title: 'City Lights',
-        album: 'Urban Vision',
+        title: 'Alora',
+        album: 'Mixed Feelings',
         duration: '3:24',
         streams: '15.7M',
-        coverImage: 'https://i.scdn.co/image/ab67616d0000b273af52c228c9619ff6298b08cd',
-        songUrl: 'https://cdn.freesound.org/previews/612/612092_5674468-lq.mp3'
+        coverImage: 'https://images.genius.com/22ab0dce096d9e0f51ea204d3f2140b9.1000x1000x1.png',
+        songUrl: 'music/MARKO GLASS  Alora (Official Visual).mp3'
       },
       {
         id: 'marko-song-2',
-        title: 'Night Drive',
-        album: 'Urban Vision',
+        title: 'Te vad te schimbi',
+        album: 'Mixed Feelings',
         duration: '4:02',
         streams: '10.3M',
-        coverImage: 'https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bd89802e5a'
+        coverImage: 'https://images.genius.com/22ab0dce096d9e0f51ea204d3f2140b9.1000x1000x1.png',
+        songUrl: 'music/MARKO GLASS - Te vad te schimbi (feat. Petre Stefan) (Official Visual).mp3'
       },
       {
         id: 'marko-song-3',
-        title: 'Visions',
-        album: 'Glass World',
+        title: 'Savana 2',
+        album: 'Savana 2',
         duration: '3:18',
         streams: '8.9M',
-        coverImage: 'https://i.scdn.co/image/ab67616d0000b273ba718c57dd246f7c3d3e103f'
+        coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjMF0KRhN8ryMM60tYkfCws6VdaC4Du6d0pg&s',
+        songUrl: 'music/MARKO GLASS X BVCOVIA - SAVANA 2.mp3'
       }
     ]
   },
@@ -136,8 +138,8 @@ const artistRecommendations: ArtistItem[] = [
         album: 'BE',
         duration: '3:19',
         streams: '1.3B',
-        coverImage: 'https://upload.wikimedia.org/wikipedia/en/c/c0/BTS_-_Dynamite_%28official_cover%29.png',
-        songUrl: 'https://cdn.freesound.org/previews/392/392617_5121236-lq.mp3'
+        coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHF7gc4XjnYYzAVGyY_BbvNn4IMW62BsC2wA&s',
+        songUrl: 'music/Tralalero Tralala x Havana [BRAINROT REMIX] Camila Cabello.mp3'
       },
       {
         id: 'bts-song-2',
@@ -145,7 +147,8 @@ const artistRecommendations: ArtistItem[] = [
         album: 'Butter',
         duration: '2:42',
         streams: '980M',
-        coverImage: 'https://upload.wikimedia.org/wikipedia/en/d/db/BTS_-_Butter.png'
+        coverImage: 'https://upload.wikimedia.org/wikipedia/en/d/db/BTS_-_Butter.png',
+        songUrl: 'music/Elefantul Cici - Cantece pentru copii  CriCriCri.mp3'
       },
       {
         id: 'bts-song-3',
@@ -153,7 +156,8 @@ const artistRecommendations: ArtistItem[] = [
         album: 'Map of the Soul: Persona',
         duration: '3:49',
         streams: '720M',
-        coverImage: 'https://upload.wikimedia.org/wikipedia/en/9/9e/BTS_-_Map_of_the_Soul_-_Persona.png'
+        coverImage: 'https://fbi.cults3d.com/uploaders/25344900/illustration-file/7fe58306-2cf8-4a0e-8e4f-eaf8509f064a/e16119a4ab4b4adca255d70e4f0fcb11H3000W3000_464_464.jpg',
+        songUrl: 'music/Elefantul Cici - Cantece pentru copii  CriCriCri.mp3'
       }
     ]
   },
@@ -171,28 +175,30 @@ const artistRecommendations: ArtistItem[] = [
     popularSongs: [
       {
         id: 'slipknot-song-1',
-        title: 'Duality',
+        title: 'Psyhosocial',
         album: 'Vol. 3: (The Subliminal Verses)',
         duration: '4:12',
         streams: '320M',
-        coverImage: 'https://upload.wikimedia.org/wikipedia/en/f/f3/Slipknot_-_Vol._3-_%28The_Subliminal_Verses%29.jpg'
+        coverImage: 'https://i.ytimg.com/vi/_sv4fwRYNsM/maxresdefault.jpg',
+        songUrl: 'music/Slipknot - Psychosocial [OFFICIAL VIDEO] [HD].mp3'
       },
       {
         id: 'slipknot-song-2',
-        title: 'Psychosocial',
+        title: 'People = shit',
         album: 'All Hope Is Gone',
         duration: '4:43',
         streams: '280M',
-        coverImage: 'https://upload.wikimedia.org/wikipedia/en/4/42/Slipknot_-_All_Hope_Is_Gone.jpeg'
+        coverImage: 'https://i.scdn.co/image/ab67616d0000b273457163bec7e8e4decf8c6375',
+        songUrl: 'music/Slipknot - People Shit (Audio).mp3'
       },
       {
         id: 'slipknot-song-3',
-        title: 'Before I Forget',
+        title: 'The devil in I',
         album: 'Vol. 3: (The Subliminal Verses)',
         duration: '4:38',
         streams: '210M',
-        coverImage: 'https://upload.wikimedia.org/wikipedia/en/f/f3/Slipknot_-_Vol._3-_%28The_Subliminal_Verses%29.jpg',
-        songUrl: 'https://cdn.freesound.org/previews/612/612092_5674468-lq.mp3'
+        coverImage: 'https://i1.sndcdn.com/artworks-B00qoqcXO29iM7wV-iz8vEA-t500x500.jpg',
+        songUrl: 'music/Slipknot - The Devil In I [OFFICIAL VIDEO].mp3'
       }
     ]
   },
