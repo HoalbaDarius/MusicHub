@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { StyleThemeOption } from './components/ThemeCarousel/ThemeCarousel';
 import MainScreen from './components/MainScreen/MainScreen';
+import SakuraAnimation from './components/SakuraAnimation/SakuraAnimation';
+import RockMusicAnimation from './components/RockOverlayAnimation/RockOverlayAnimation';
+import KPopOverlayAnimation from './components/KPopOverlayAnimation/KPopOverlayAnimation';
+import TrapOverlayAnimation from './components/TrapOverlayAnimation/TrapOverlayAnimation';
 // Import the updated interface type if it includes imageUrl
 import './index.css';
 
@@ -134,7 +138,10 @@ function App() {
         onNavigate={navigateTo}
       />
       {/* Add Sakura animation component that only activates for the Japanese theme */}
-      
+      <SakuraAnimation isActive={styleTheme === 'japanese'} />
+      <RockMusicAnimation isActive={styleTheme === 'rock'} elementCount={20} />
+      <KPopOverlayAnimation isActive={styleTheme === 'kpop'} elementCount={20} />
+      <TrapOverlayAnimation isActive={styleTheme === 'trap'} elementCount={15} />
       {/* Conditional rendering based on current page */}
       {currentPage === 'main' && (
         <MainScreen
