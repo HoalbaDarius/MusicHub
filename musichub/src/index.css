@@ -13,67 +13,67 @@
     /* Define more base variables if needed */
 }
 
-/* --- Default Style Theme Variables --- */
+/* --- Rap Style Theme Variables --- */
 :root, /* Light mode default */
-html[data-style-theme='default'] {
+html[data-style-theme='rap'] { 
     --font-family: 'Poppins', sans-serif;
-    --bg-color: #f4f7f6;
-    --text-color: #333;
-    --card-bg: #ffffff;
-    --navbar-bg: #ffffff;
-    --primary-color: #6200ea; /* Purple */
-    --secondary-color: #03dac6; /* Teal */
+    --bg-color: #887d69; /* Navy Blue */
+    --text-color: #ffffff;
+    --card-bg: 		#7f7b6f; /* Medium Blue */
+    --navbar-bg: 	#aa9b82;
+    --primary-color: 			#b4a896; /* Purple */
+    --secondary-color: #119f91; /* Teal */
     --shadow-color: rgba(0, 0, 0, 0.1);
     --border-color: #e0e0e0;
 }
-html[data-theme='dark'][data-style-theme='default'], /* Dark mode default */
+html[data-theme='dark'][data-style-theme='rap'], /* Dark mode default */
 html[data-theme='dark']:not([data-style-theme]), /* Dark mode if style not set */
 :root[data-theme='dark'] { /* Might be needed for initial load */
     --font-family: 'Poppins', sans-serif;
-    --bg-color: #121212;
+    --bg-color: #413c32;
     --text-color: #e0e0e0;
-    --card-bg: #1e1e1e;
+    --card-bg: #605e56;
     --navbar-bg: #1e1e1e;
-    --primary-color: #bb86fc; /* Lighter Purple */
-    --secondary-color: #03dac6; /* Teal */
+    --primary-color: #b4a896; /* Lighter Purple */
+    --secondary-color: #092623; /* Teal */
     --shadow-color: rgba(255, 255, 255, 0.1);
     --border-color: #333;
 }
 
-/* --- Japanese Style Theme Variables --- */
-html[data-style-theme='japanese'] {
+/* --- LoFi Style Theme Variables --- */
+html[data-style-theme='lofi'] {
     --font-family: 'Noto Sans JP', sans-serif;
     /* Light Mode */
-    --bg-color: #f8f8f8;
+    --bg-color: #F4C2C2; /* Sky Blue */
     --text-color: #444;
     --card-bg: #ffffff;
-    --navbar-bg: #ffffff;
-    --primary-color: #e60026; /* Red */
-    --secondary-color: #f6a3b1; /* Light Pink */
+    --navbar-bg: #E15656;
+    --primary-color: #EA8C8C; /* Red */
+    --secondary-color: #5ea2c0; /* Light Pink */ 
     --shadow-color: rgba(0, 0, 0, 0.08);
     --border-color: #eaeaea;
 }
-html[data-theme='dark'][data-style-theme='japanese'] {
+html[data-theme='dark'][data-style-theme='lofi'] {
     --font-family: 'Noto Sans JP', sans-serif;
     /* Dark Mode */
-    --bg-color: #1a1a1a;
-    --text-color: #d1d1d1;
-    --card-bg: #2a2a2a;
-    --navbar-bg: #2a2a2a;
-    --primary-color: #ff4d6d; /* Brighter Red */
-    --secondary-color: #b36a76; /* Darker Pink */
+    --bg-color: #EA8C8C;
+    --text-color: #ffffff;
+    --card-bg: #bf7676;
+    --navbar-bg: #9B1C1C;
+    --primary-color: #D12626; /* Brighter Red */
+    --secondary-color: #50a2ab; /* Darker Pink */
     --shadow-color: rgba(255, 255, 255, 0.08);
     --border-color: #404040;
 }
-
+ 
 /* --- K-Pop Style Theme Variables --- */
 html[data-style-theme='kpop'] {
     --font-family: 'Nunito', sans-serif;
     /* Light Mode */
-    --bg-color: #fff0f5; /* Lavender Blush */
+    --bg-color: #B497B5; /* Lavender Blush */
     --text-color: #553d4f; /* Dark Purple/Brown */
     --card-bg: #ffffff;
-    --navbar-bg: #ffffff;
+    --navbar-bg: #845C8B;
     --primary-color: #ff69b4; /* Hot Pink */
     --secondary-color: #87cefa; /* Light Sky Blue */
     --shadow-color: rgba(255, 105, 180, 0.15);
@@ -91,15 +91,15 @@ html[data-theme='dark'][data-style-theme='kpop'] {
     --shadow-color: rgba(255, 133, 200, 0.15);
     --border-color: #6a3b69;
 }
-
-/* --- Trap Style Theme Variables --- */
+ 
+/* --- Trap Style Theme Variables (Updated with Deep Purple) --- */
 html[data-style-theme='trap'] {
-    --font-family: 'Orbitron', sans-serif; /* Futuristic font example */
+    --font-family: 'Orbitron', sans-serif;
     /* Light Mode */
-    --bg-color: #e8e8e8; /* Light Gray */
-    --text-color: #1a1a1a;
-    --card-bg: #f5f5f5;
-    --navbar-bg: #f5f5f5;
+    --bg-color: #4b0082; /* Deep Purple */
+    --text-color: #ffffff;
+    --card-bg: #5a0d91;
+    --navbar-bg: #5a0d91;
     --primary-color: #ff00ff; /* Magenta */
     --secondary-color: #00ffff; /* Cyan */
     --shadow-color: rgba(0, 0, 0, 0.1);
@@ -108,39 +108,39 @@ html[data-style-theme='trap'] {
 html[data-theme='dark'][data-style-theme='trap'] {
     --font-family: 'Orbitron', sans-serif;
     /* Dark Mode */
-    --bg-color: #0d0d0d;
+    --bg-color: #2b0033; /* Dark deep purple */
     --text-color: #e0e0e0;
-    --card-bg: #1f1f1f;
-    --navbar-bg: #1f1f1f;
-    --primary-color: #ff00ff; /* Magenta (keep bright) */
-    --secondary-color: #00ffff; /* Cyan (keep bright) */
-    --shadow-color: rgba(255, 0, 255, 0.2); /* Magenta shadow */
+    --card-bg: #3a0040;
+    --navbar-bg: #3a0040;
+    --primary-color: #ff00ff;
+    --secondary-color: #00ffff;
+    --shadow-color: rgba(255, 0, 255, 0.2);
     --border-color: #333;
 }
-
-/* --- Rock Style Theme Variables --- */
+ 
+/* --- Rock Style Theme Variables (Updated to Burgundy Red) --- */
 html[data-style-theme='rock'] {
-    --font-family: 'Orbitron', sans-serif; /* Or use a more grungy font */
+    --font-family: 'Orbitron', sans-serif;
     /* Light Mode */
-    --bg-color: #cccccc; /* Gray */
-    --text-color: #111111;
-    --card-bg: #e0e0e0;
-    --navbar-bg: #e0e0e0;
-    --primary-color: #d32f2f; /* Red */
-    --secondary-color: #515151; /* Dark Gray */
-    --shadow-color: rgba(0, 0, 0, 0.15);
+    --bg-color: #800020; /* Burgundy Red */
+    --text-color: #ffffff;
+    --card-bg: #a8323c;
+    --navbar-bg: #a8323c;
+    --primary-color: #d32f2f;
+    --secondary-color: #1f7687;
+    --shadow-color: rgba(145, 49, 49, 0.15);
     --border-color: #b0b0b0;
 }
 html[data-theme='dark'][data-style-theme='rock'] {
     --font-family: 'Orbitron', sans-serif;
     /* Dark Mode */
-    --bg-color: #1c1c1c;
-    --text-color: #bdbdbd;
-    --card-bg: #2d2d2d;
-    --navbar-bg: #2d2d2d;
-    --primary-color: #f44336; /* Brighter Red */
-    --secondary-color: #9e9e9e; /* Lighter Gray */
-    --shadow-color: rgba(0, 0, 0, 0.3); /* Stronger Shadow */
+    --bg-color: #500010; /* Darker Burgundy */
+    --text-color: #f8f8f8;
+    --card-bg: #700020;
+    --navbar-bg: #700020;
+    --primary-color: #f44336;
+    --secondary-color: #9e9e9e;
+    --shadow-color: rgba(0, 0, 0, 0.3);
     --border-color: #424242;
 }
 

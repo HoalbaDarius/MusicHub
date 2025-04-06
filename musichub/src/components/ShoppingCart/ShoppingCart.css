@@ -546,7 +546,7 @@
     padding: 10px;
     border: 1px solid var(--border-color, #e0e0e0);
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(var(--primary-color-rgb, 0, 112, 243), 0.1);
   }
   
   .checkout-item-image {
@@ -574,7 +574,7 @@
     flex-wrap: wrap;
     gap: 8px;
     font-size: 0.85rem;
-    color: var(--text-color-secondary, #666);
+    color: var(--text-color-secondary, #fff);
   }
   
   .checkout-item-options span {

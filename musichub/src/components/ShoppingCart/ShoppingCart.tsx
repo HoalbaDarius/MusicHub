@@ -364,7 +364,7 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({ onNavigate }) => {
                   </div>
 
                   <div className="button-group">
-                    <button type="button" className="back-button" onClick={handlePreviousStep}>Back</button>
+                    <button type="button" className="ticket-button" onClick={handlePreviousStep}>Back</button>
                     <button type="submit" className="ticket-button">Complete Purchase</button>
                   </div>
                 </form>
