@@ -63,7 +63,7 @@
 
 .merch-modal-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   object-fit: cover;
 }
@@ -232,7 +232,6 @@
   border-left: none;
   border-right: none;
   font-size: 1rem;
-  color: var(--text-color);
 }
 
 .quantity-input::-webkit-inner-spin-button, 

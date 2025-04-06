@@ -234,15 +234,15 @@ const defaultRelatedArtists = (genre: string) => {
       },
       {
         id: "ra-2",
-        name: "Travis Scott",
+        name: "Bvcovia",
         imageUrl:
-          "https://i.scdn.co/image/ab6761610000e5eb19c2790db63f28c0edf6585f",
+          "https://i.scdn.co/image/ab67616d00001e02fc8ff4b9493ee2e7430399a0",
       },
       {
         id: "ra-3",
         name: "Future",
         imageUrl:
-          "https://i.scdn.co/image/ab6761610000e5eb303d28d425798192134ddc7a",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyzs8B4NPBiFEv-Py4QSKv6AdXBRCr8pTNgw&s",
       },
     ];
   } else if (genre.toLowerCase().includes("k-pop")) {
@@ -251,19 +251,19 @@ const defaultRelatedArtists = (genre: string) => {
         id: "ra-4",
         name: "Blackpink",
         imageUrl:
-          "https://i.scdn.co/image/ab6761610000e5eb7dd303120a072bf08a384db6",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Blackpink_Coachella_2023_02_%28cropped%29.jpg/1200px-Blackpink_Coachella_2023_02_%28cropped%29.jpg",
       },
       {
         id: "ra-5",
         name: "Twice",
         imageUrl:
-          "https://i.scdn.co/image/ab6761610000e5eb2688f99ece2d2eaa6866a542",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Twice_-_Dickies_Arena%2C_2022_%28cropped%29.jpg/1200px-Twice_-_Dickies_Arena%2C_2022_%28cropped%29.jpg",
       },
       {
         id: "ra-6",
         name: "ENHYPEN",
         imageUrl:
-          "https://i.scdn.co/image/ab6761610000e5eb1d84fce5c112ce19bc6bc243",
+          "https://wwd.com/wp-content/uploads/2023/10/Enhypen_0108.jpg",
       },
     ];
   } else if (genre.toLowerCase().includes("rock")) {
@@ -278,13 +278,13 @@ const defaultRelatedArtists = (genre: string) => {
         id: "ra-8",
         name: "System of a Down",
         imageUrl:
-          "https://i.scdn.co/image/ab6761610000e5eb4fc4fa2954d5a5b4427c22e5",
+          "https://i.scdn.co/image/ab6761610000e5eb60063d3451ade8f9fab397c2",
       },
       {
         id: "ra-9",
         name: "Linkin Park",
         imageUrl:
-          "https://i.scdn.co/image/ab6761610000e5eba91af711541f8807ed7f0676",
+          "hhttps://townsquare.media/site/366/files/2014/12/Linkin-Park.jpg?w=780&q=75https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1ta6fvFCVRq-iXNNgHvL2rHTfySg_CexmQw&s",
       },
     ];
   } else {

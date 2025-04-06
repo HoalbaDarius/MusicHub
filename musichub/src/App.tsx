@@ -9,14 +9,14 @@ import SakuraAnimation from './components/SakuraAnimation/SakuraAnimation';
 import RockMusicAnimation from './components/RockOverlayAnimation/RockOverlayAnimation';
 import KPopOverlayAnimation from './components/KPopOverlayAnimation/KPopOverlayAnimation';
 import TrapOverlayAnimation from './components/TrapOverlayAnimation/TrapOverlayAnimation';
+import RapOverlayAnimation from './components/RapOverlayAnimation/RapOverlayAnimation';
 import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 import { CartProvider } from './context/CartContext'; // Import CartProvider
 import './index.css'; // Global styles
 
 type Theme = 'light' | 'dark';
-type StyleThemeId = 'default' | 'japanese' | 'kpop' | 'trap' | 'rock';
-// Add 'cart' to PageView type
 type PageView = 'main' | 'events' | 'cart';
+type StyleThemeId = 'rap' | 'lofi' | 'kpop' | 'trap' | 'rock';
 
 // Define interface for music items
 export interface SongPreview {
@@ -28,11 +28,36 @@ export interface SongPreview {
 
 // Define the available style themes with image URLs
 const availableStyleThemes: StyleThemeOption[] = [
-    { id: 'default', name: 'Default', imageUrl: 'https://i.scdn.co/image/ab67616d0000b27310e6745bb2f179dd3616b85f', imgBanner: 'https://i.scdn.co/image/ab67616d0000b27310e6745bb2f179dd3616b85f' },
-    { id: 'japanese', name: 'Japanese', imageUrl: 'https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/02/a0002400/img/basic/a0002400_main.jpg', imgBanner: 'https://www.datocms-assets.com/101439/1741966599-cherry-blossoms.avif?auto=format&fit=crop&h=800&w=1200' },
-    { id: 'kpop', name: 'K-Pop', imageUrl: 'https://www.billboard.com/wp-content/uploads/media/01-Pop-Stars-Open-2018-billboard-1548.jpg?w=1024', imgBanner: 'https://wallpapers.com/images/featured/bts-concert-pictures-quogqof06g4312p9.jpg' },
-    { id: 'trap', name: 'Trap', imageUrl: 'https://images.genius.com/22ab0dce096d9e0f51ea204d3f2140b9.1000x1000x1.png', imgBanner: 'https://i.ytimg.com/vi/YrHvrQyZ7IA/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGGUgWihLMA8=&rs=AOn4CLB3P4z-N37wU7R0BQdSi0zrmCkpeA' },
-    { id: 'rock', name: 'Rock', imageUrl: 'https://www.nme.com/wp-content/uploads/2024/10/Slipknot-posing.jpg', imgBanner: 'https://i.ytimg.com/vi/Smag19uBlUw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCsPDOclopj0eUh2F_00fWGtbCZRg' },
+    {
+        id: 'rap',
+        name: 'Rap',
+        imageUrl: 'https://i.scdn.co/image/ab67616d0000b2735ad6c8d36eb04f6a177cbbcc', // Placeholder
+        imgBanner: 'https://wallpapers.com/images/featured/tupac-pictures-5vwiry1srhvnrk9e.jpg' // Placeholder
+    },
+    {
+        id: 'lofi',
+        name: 'LoFi',
+        imageUrl: 'https://i.ytimg.com/vi/Na0w3Mz46GA/hq720.jpg?v=667bf3df&sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBJ2KfY4wbZ3Q3kdxRTnUdscogmBw', // Placeholder
+        imgBanner: 'https://www.datocms-assets.com/101439/1741966599-cherry-blossoms.avif?auto=format&fit=crop&h=800&w=1200' // Placeholder
+    },
+    {
+        id: 'kpop',
+        name: 'K-Pop',
+        imageUrl: 'https://i.scdn.co/image/ab6761610000e5ebcd3114c3d3dc89d5ec1c9145', // Placeholder
+        imgBanner: 'https://wallpapers.com/images/featured/bts-concert-pictures-quogqof06g4312p9.jpg' // Placeholder
+    },
+    {
+        id: 'trap',
+        name: 'Trap',
+        imageUrl: 'https://images.genius.com/22ab0dce096d9e0f51ea204d3f2140b9.1000x1000x1.png', // Placeholder
+        imgBanner: 'https://www.forest-national.be/_next/image?url=https%3A%2F%2Fdam.beatvenues.be%2Fa0WP5000007j0r4MAA_original.jpg&w=3840&q=75' // Placeholder
+    },
+    {
+        id: 'rock',
+        name: 'Rock',
+        imageUrl: 'https://www.nme.com/wp-content/uploads/2024/10/Slipknot-posing.jpg', // Placeholder
+        imgBanner: 'https://i.pinimg.com/736x/dc/22/d5/dc22d5ae354dd4462c4adcd5977bf158.jpg' // Placeholder
+    },
 ];
 
 function App() {
@@ -47,9 +72,10 @@ function App() {
   // Style theme state
   const [styleTheme, setStyleTheme] = useState<StyleThemeId>(() => {
       const savedStyle = localStorage.getItem('styleTheme');
-      // Ensure savedStyle is a valid StyleThemeId
-      const isValidSavedStyle = availableStyleThemes.some(t => t.id === savedStyle);
-      return isValidSavedStyle ? savedStyle as StyleThemeId : 'default';
+      if (savedStyle && availableStyleThemes.some(t => t.id === savedStyle)) {
+          return savedStyle as StyleThemeId;
+      }
+      return 'rap';
   });
 
   // Current page state - Updated type
@@ -109,22 +135,21 @@ function App() {
   };
 
   return (
-    // Wrap the entire application content with CartProvider
     <CartProvider>
-      <div className="app-container">
-        {/* Pass the updated navigateTo function and currentPage type */}
-        <Navbar
-          theme={theme}
-          toggleTheme={toggleTheme}
-          currentPage={currentPage}
-          onNavigate={navigateTo}
-        />
-
-        {/* Theme-specific animations */}
-        <SakuraAnimation isActive={styleTheme === 'japanese'} />
-        <RockMusicAnimation isActive={styleTheme === 'rock'} elementCount={20} />
-        <KPopOverlayAnimation isActive={styleTheme === 'kpop'} elementCount={20} />
-        <TrapOverlayAnimation isActive={styleTheme === 'trap'} elementCount={15} />
+    <div className="app-container">
+      <Navbar 
+        theme={theme} 
+        toggleTheme={toggleTheme} 
+        currentPage={currentPage}
+        onNavigate={navigateTo}
+      />
+      {/* Add Sakura animation component that only activates for the Japanese theme */}
+      <SakuraAnimation isActive={styleTheme === 'lofi'} />
+      <RockMusicAnimation isActive={styleTheme === 'rock'} elementCount={20} />
+      <KPopOverlayAnimation isActive={styleTheme === 'kpop'} elementCount={20} />
+      <TrapOverlayAnimation isActive={styleTheme === 'trap'} elementCount={15} />
+      <RapOverlayAnimation isActive={styleTheme === 'rap'} elementCount={15} />
+      
 
         {/* --- Page Content --- */}
         <div className="page-content"> {/* Optional wrapper for content below navbar */}
